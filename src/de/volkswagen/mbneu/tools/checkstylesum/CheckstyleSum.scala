@@ -1,4 +1,4 @@
-package de.pfeufferweb.checkstylesum
+package de.volkswagen.mbneu.tools.checkstylesum
 
 import scala.xml._
 import scala.collection.mutable.Map

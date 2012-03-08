@@ -1,6 +1,7 @@
 package de.volkswagen.mbneu.tools.checkstylesum
 
 import scala.xml._
+import java.io.File
 
 /**
  * Diese Klasse liest die gegebenen Checkstyle-Ergebnisdateien und erstellt daraus
@@ -10,8 +11,20 @@ object CheckstyleSuppress {
 
   def main(args: Array[String]) = println(new PrettyPrinter(800, 4).format(generateXml(args)))
 
+  //  def main(args: Array[String]) = XML.saveFull("checkstyleSuppressions.xml", generateXml(args), "UTF-8", true, null)
+
   private def generateXml(files: Array[String]) = {
-    <suppressions>{ files map readFile }</suppressions>
+    <suppressions>{ getFiles(files) map readFile }</suppressions>
+  }
+
+  private def getFiles(files: Array[String]) = {
+    if (files.isEmpty) findCheckstyleResults(new File(".")) else files
+  }
+
+  private def findCheckstyleResults(f: File): Array[String] = {
+    val these = f.listFiles
+    val checkstyleFiles = these.filter(_.getName == "checkstyle-result.xml").map(_.getAbsolutePath)
+    checkstyleFiles ++ these.filter(_.isDirectory()).flatMap(findCheckstyleResults(_))
   }
 
   private def readFile(checkstyleFile: String) = {
@@ -27,6 +40,6 @@ object CheckstyleSuppress {
     absoluteFileName.substring(absoluteFileName.lastIndexOf("\\") + 1)
   }
 
-  private def suppress(file: String, error: Node) = 
+  private def suppress(file: String, error: Node) =
     <suppress checks={ (error \\ "@source").text } files={ file } lines={ (error \\ "@line").text }/>
 }

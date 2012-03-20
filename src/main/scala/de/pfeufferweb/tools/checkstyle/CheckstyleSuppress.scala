@@ -6,7 +6,7 @@ import de.pfeufferweb.tools.FileFinder
 
 /**
  * Diese Klasse liest die gegebenen Checkstyle-Ergebnisdateien und erstellt daraus
- * eine Checkstyle-konforme XML-Suppressions-Datei für alle gefundenen Fehler.
+ * eine Checkstyle-konforme XML-Suppressions-Datei fuer alle gefundenen Fehler.
  */
 object CheckstyleSuppress {
 

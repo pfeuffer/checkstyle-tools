@@ -37,7 +37,7 @@ class CheckstyleSum(counter: Counter) {
   }
 }
 
-private abstract class Counter {
+abstract class Counter {
 
   val counts = new HashMap[String, Int]
 
@@ -54,14 +54,14 @@ private abstract class Counter {
     println(counts.values.foldLeft(0)((sum, c) => { sum + c }))
 }
 
-private class ByFileCounter extends Counter {
+class ByFileCounter extends Counter {
 
   def process(data: Elem) = (data \\ "file").foreach(incFile(_))
 
   private def incFile(file: Node) = inc((file \\ "@name").text, (file \\ "error").size)
 }
 
-private class ByErrorCounter extends Counter {
+class ByErrorCounter extends Counter {
 
   def process(data: Elem) = {
     (data \\ "file") foreach {

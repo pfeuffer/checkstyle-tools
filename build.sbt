@@ -1,12 +1,12 @@
 name := "checkstyle-tools"
 
-version := "0.1.0"
+version := "0.1.1"
 
-scalaVersion := "2.9.1"
+scalaVersion := "2.10.2"
 
 // resolvers += Classpaths.typesafeResolver
 
 libraryDependencies ++= Seq(
-  "org.scalatest" %% "scalatest" % "1.6.1" % "test"
+  "org.scalatest" %% "scalatest" % "2.0" % "test"
 )
 

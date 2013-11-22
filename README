@@ -12,4 +12,8 @@ checkstyle in java. These tools will read the checkstyle result files.
    help you. It will read the checkstyle results and create a suppression file,
    that will suppress all the existing errors. Thereafter you will find only
    new errors introduced due to changes.
- 
+
+# BUILD
+
+Build this via `sbt assembly`.
+

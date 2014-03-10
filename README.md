@@ -17,3 +17,24 @@ checkstyle in java. These tools will read the checkstyle result files.
 
 Build this via `sbt assembly`.
 
+# RUN
+
+## Suppressions
+
+You can create the suppressions by simply running
+
+```
+java -jar checkstyle-tools-assembly-0.1.1.jar
+```
+
+This will look for `checkstyle-result.xml` files starting at the current directory.
+
+## Summary
+
+To create a summary, use the following command:
+
+```
+java -cp checkstyle-tools-assembly-0.1.1.jar de.pfeufferweb.tools.checkstyle.CheckstyleSum <dir>
+```
+
+Mind that you have to specify the starting directory for this one.
